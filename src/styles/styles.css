@@ -1,0 +1,102 @@
+.app-container-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+.app-container {
+    display: flex;
+    justify-content: space-between; /* Distribute elements evenly */
+    padding: 20px;
+    width: 100%;
+}
+
+.pokemon-list,
+.pokemon-details-container,
+.move-details-container {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    font-family: 'Press Start 2P', cursive;
+    font-size: 25px;
+    text-align: center;
+    min-height: 80vh;
+}
+
+ul {
+    list-style-type: none; /* Remove default list styles */
+    padding: 0; /* Remove default padding */
+}
+
+.pokemon-name {
+    display: inline-block; /* Display each Pokemon name container inline */
+    padding: 8px;
+    margin: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 25px;
+}
+
+.pokemon-name:hover {
+    background-color: #e0e0e0;
+}
+ul.move-list li {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 15px;
+
+}
+.type-normal { color: #A8A878; }
+.type-fire { color: #F08030; }
+.type-water { color: #6890F0; }
+.type-electric { color: #F8D030; }
+.type-grass { color: #78C850; }
+.type-ice { color: #98D8D8; }
+.type-fighting { color: #C03028; }
+.type-poison { color: #A040A0; }
+.type-ground { color: #E0C068; }
+.type-flying { color: #A890F0; }
+.type-psychic { color: #F85888; }
+.type-bug { color: #A8B820; }
+.type-rock { color: #B8A038; }
+.type-ghost { color: #705898; }
+.type-dragon { color: #7038F8; }
+.type-dark { color: #705848; }
+.type-steel { color: #B8B8D0; }
+.type-fairy { color: #EE99AC; }
+
+.pokemon-team {
+    margin-top: 20px;
+  }
+  
+  .team-container {
+    display: flex;
+  }
+  
+  .team-slot {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .empty-slot {
+    color: #999;
+  }
+  
+  .team-slot img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+  }
