@@ -7,6 +7,7 @@ import PokemonTeam from './PokemonTeam';
 function AppContainer() {
     const [selectedPokemon, setSelectedPokemon] = useState(null);
     const [selectedMove, setSelectedMove] = useState(null); 
+    const [team, setTeam] = useState(Array(6).fill(null));
 
     const handlePokemonSelect = (pokemon) => {
         setSelectedPokemon(pokemon);
@@ -16,7 +17,17 @@ function AppContainer() {
     const handleMoveSelect = (move) => {
         setSelectedMove(move);
     };
-
+    const handleAddToTeam = () => {
+        if (selectedPokemon) {
+            const updatedTeam = [...team];
+            const emptySlotIndex = updatedTeam.findIndex(pokemon => !pokemon);
+            if (emptySlotIndex !== -1) {
+                updatedTeam[emptySlotIndex] = selectedPokemon;
+                setTeam(updatedTeam);
+                setSelectedPokemon(null);
+            }
+        }
+    };
     return (
         <div className="app-container-wrapper">
         <div className="app-container">
@@ -26,7 +37,7 @@ function AppContainer() {
             <div className="pokemon-details-container">
                 {selectedPokemon && (
                     <div className="pokemon-details">
-                        <PokemonDetails name={selectedPokemon} types={selectedPokemon.types} onMoveSelect={handleMoveSelect} /> 
+                        <PokemonDetails name={selectedPokemon} types={selectedPokemon.types} onAddToTeam={handleAddToTeam}  onMoveSelect={handleMoveSelect} /> 
                     </div>
                 )}
             </div>
@@ -40,7 +51,7 @@ function AppContainer() {
         
             </div>
             <div className="pokemon-team-container"> 
-                <PokemonTeam />
+                <PokemonTeam team={team} onPokemonSelect={handlePokemonSelect} />
             </div>
         </div>
     );

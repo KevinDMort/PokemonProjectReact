@@ -1,13 +1,11 @@
 import React from 'react';
 
-function PokemonTeam() {
-  const [team, setTeam] = React.useState(Array(6).fill(null));
-
+function PokemonTeam({ team, onPokemonSelect}) {
   const renderTeamSlots = () => {
     return team.map((pokemon, index) => (
-      <div key={index} className="team-slot">
+      <div key={index} className="team-slot" onClick={() => onPokemonSelect(pokemon)}>
         {pokemon ? (
-          <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+          <img src={pokemon.sprites.front_default} alt={pokemon.name}  />
         ) : (
           <span className="empty-slot">Empty</span>
         )}

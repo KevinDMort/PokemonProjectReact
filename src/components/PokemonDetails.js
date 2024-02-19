@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function PokemonDetails({ name: pokemon, onMoveSelect, types }) {
+function PokemonDetails({ name: pokemon, onMoveSelect, types, onAddToTeam }) {
     
     const [pokemonDetails, setPokemonDetails] = useState(null);
     const [selectedMove, setSelectedMove] = useState(null);
@@ -18,7 +18,9 @@ function PokemonDetails({ name: pokemon, onMoveSelect, types }) {
 
         fetchPokemonDetails();
     }, [pokemon]);
-
+    const handleAddToTeamClick = () => {
+        onAddToTeam(); 
+    };
     const handleMoveChange = (event) => {
         const selectedMoveName = event.target.value;
         const selectedMove = pokemonDetails.moves.find(move => move.move.name === selectedMoveName);
@@ -52,6 +54,8 @@ function PokemonDetails({ name: pokemon, onMoveSelect, types }) {
             <h3>Base Experience: {pokemonDetails.base_experience}</h3>
             <h3>Height: {pokemonDetails.height}</h3>
             <h3>Weight: {pokemonDetails.weight}</h3>
+            <button onClick={handleAddToTeamClick}>Add to Team</button>
+            
         </div>
     );
 }
