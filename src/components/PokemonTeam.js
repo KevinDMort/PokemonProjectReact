@@ -1,9 +1,18 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectedPokemon } from './TeamBuildingSlice'; // Import action
 
-function PokemonTeam({ team, onPokemonSelect}) {
+function PokemonTeam() {
+  const team = useSelector(state => state.teamBuild.team);
+  const dispatch = useDispatch();
+
+  const handlePokemonSelect = (pokemon) => {
+    dispatch(selectedPokemon(pokemon));
+  };
+
   const renderTeamSlots = () => {
     return team.map((pokemon, index) => (
-      <div key={index} className="team-slot" onClick={() => onPokemonSelect(pokemon)}>
+      <div key={index} className="team-slot" onClick={() => handlePokemonSelect(pokemon)}>
         {pokemon ? (
           <img src={pokemon.sprites.front_default} alt={pokemon.name}  />
         ) : (
