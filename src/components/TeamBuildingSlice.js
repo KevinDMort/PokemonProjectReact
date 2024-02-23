@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     selectedPokemon: null,
+    detailedPokemon: null,
     selectedMove: null,
     team: Array(6).fill(null),
     pokemonList: [],
@@ -10,7 +11,6 @@ const initialState = {
     detailedMove: null,
   };
 
-
   export const TeamBuildSlice = createSlice({
     name: 'teamBuild',
     initialState,
@@ -18,6 +18,9 @@ const initialState = {
     reducers: {
       selectedPokemon: (state, action) => {
         state.selectedPokemon = action.payload;
+      },
+      detailedPokemon: (state, action) => {
+        state.detailedPokemon = action.payload;
       },
       selectedMove: (state, action) => {
         state.selectedMove = action.payload;
@@ -55,14 +58,17 @@ const initialState = {
       },
       setSelectedMoveDetails: (state, action) => {
         state.detailedMove = action.payload; 
-    },
-
+      },
+      setDetailedPokemon: (state, action) => {
+        state.detailedPokemon = action.payload;
+      }
     }
   });
 export const { selectedPokemon } = TeamBuildSlice.actions;
 export const { selectedMove } = TeamBuildSlice.actions;
+export const { detailedPokemon } = TeamBuildSlice.actions;
 export const { addPokemonToTeam } = TeamBuildSlice.actions;
 export const { removePokemonFromTeam } = TeamBuildSlice.actions;
-export const { setPokemonList, setSearchTerm, setFilteredPokemonList, setSelectedPokemon, setSelectedMove,setSelectedMoveDetails } = TeamBuildSlice.actions;
+export const { setPokemonList, setSearchTerm, setFilteredPokemonList, setSelectedPokemon, setSelectedMove,setSelectedMoveDetails, setDetailedPokemon} = TeamBuildSlice.actions;
 export default TeamBuildSlice.reducer;
 
