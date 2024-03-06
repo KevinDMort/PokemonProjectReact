@@ -5,7 +5,6 @@ import MoveDetails from './MoveDetails';
 import PokemonTeam from './PokemonTeam';
 
 function AppContainer() {
-
     return (
         <div className="app-container-wrapper">
             <div className="app-container">
