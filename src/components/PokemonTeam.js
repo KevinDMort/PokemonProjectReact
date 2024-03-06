@@ -6,14 +6,14 @@ function PokemonTeam() {
   const dispatch = useDispatch();
 
   const handlePokemonSelect = (pokemon) => {
-    dispatch({ type: 'teamBuild/selectedPokemon', payload: pokemon });
+    dispatch({ type: 'teamBuild/setSelectedPokemon', payload: pokemon });
   };
 
   const renderTeamSlots = () => {
-    return team.map((pokemon, index) => (
-      <div key={index} className="team-slot" onClick={() => handlePokemonSelect(pokemon)}>
-        {pokemon ? (
-          <img src={pokemon.sprites.front_default} alt={pokemon.name}  />
+    return team.map((teamMember, index) => (
+      <div key={index} className="team-slot" onClick={() => handlePokemonSelect(teamMember.pokemon)}>
+        {teamMember.pokemon ? (
+          <img src={teamMember.pokemon.sprites.front_default} alt={teamMember.pokemon.name}  />
         ) : (
           <span className="empty-slot">Empty</span>
         )}

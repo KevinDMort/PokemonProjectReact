@@ -28,35 +28,34 @@ function PokemonDetails() {
 
     const handleMoveChange = (event) => {
         const selectedMoveName = event.target.value;
-        const sMove = detailedPokemon.moves.find(move => move.move.name === selectedMoveName);
+        const sMove = detailedPokemon.pokemon.moves.find(move => move.move.name === selectedMoveName);
         dispatch({ type: 'teamBuild/setSelectedMove', payload: sMove });
     };
-
-    if (!detailedPokemon) {
+    if (!detailedPokemon.pokemon) {
         return <div>Loading...</div>;
     }
     return (
         <div>
-            <h2>{detailedPokemon.name}</h2>
-            <img src={detailedPokemon.sprites.front_default} alt={detailedPokemon.name} />
+            <h2>{detailedPokemon.pokemon.name}</h2>
+            <img src={detailedPokemon.pokemon.sprites.front_default} alt={detailedPokemon.pokemon.name} />
             <h3>Types:</h3>
             <ul>
-                {detailedPokemon.types.map((type, index) => (
+                {detailedPokemon.pokemon.types.map((type, index) => (
                     <li key={index} className={`type-${type.type.name}`}>
                         {type.type.name}
                     </li>
                 ))}
             </ul>
             <h3>Select a Move:</h3>
-            <select onChange={handleMoveChange}>
+            <select onChange={handleMoveChange} >
                 <option value="">Select a move</option>
-                {detailedPokemon.moves.map((move, index) => (
+                {detailedPokemon.pokemon.moves.map((move, index) => (
                     <option key={index} value={move.move.name}>{move.move.name}</option>
-                ))}
+                ))} 
             </select>
-            <h3>Base Experience: {detailedPokemon.base_experience}</h3>
-            <h3>Height: {detailedPokemon.height}</h3>
-            <h3>Weight: {detailedPokemon.weight}</h3>
+            <h3>Base Experience: {detailedPokemon.pokemon.base_experience}</h3>
+            <h3>Height: {detailedPokemon.pokemon.height}</h3>
+            <h3>Weight: {detailedPokemon.pokemon.weight}</h3>
             <button onClick={handleAddToTeamClick}>Add to Team</button>
         </div>
     );
