@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSelectedMove, addPokemonToTeam, setDetailedPokemon} from './TeamBuildingSlice';
 
 function PokemonDetails() {
     const selectedPokemon = useSelector(state => state.teamBuild.selectedPokemon);
@@ -12,7 +11,7 @@ function PokemonDetails() {
             try {
                 if (selectedPokemon) {
                     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${selectedPokemon.name}`);
-                    dispatch(setDetailedPokemon(response.data));
+                    dispatch({ type: 'teamBuild/setDetailedPokemon', payload: response.data })
                 }
             } catch (error) {
                 console.error('Error fetching Pokemon details:', error);
@@ -23,20 +22,19 @@ function PokemonDetails() {
     }, [selectedPokemon, dispatch]);
 
     const handleAddToTeamClick = () => {
-        dispatch(addPokemonToTeam(detailedPokemon));
+        dispatch({type: 'teamBuild/addPokemonToTeam', payload: detailedPokemon});
     };
     
 
     const handleMoveChange = (event) => {
         const selectedMoveName = event.target.value;
         const sMove = detailedPokemon.moves.find(move => move.move.name === selectedMoveName);
-        dispatch(setSelectedMove(sMove));
+        dispatch({ type: 'teamBuild/setSelectedMove', payload: sMove });
     };
 
     if (!detailedPokemon) {
         return <div>Loading...</div>;
     }
-
     return (
         <div>
             <h2>{detailedPokemon.name}</h2>

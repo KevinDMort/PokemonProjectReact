@@ -6,8 +6,7 @@
 }
 .app-container {
     display: flex;
-    justify-content: space-between; /* Distribute elements evenly */
-    padding: 20px;
+    justify-content: space-between; 
     width: 100%;
 }
 
@@ -18,20 +17,19 @@
     border: 1px solid #ccc;
     padding: 20px;
     box-sizing: border-box;
-    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    overflow-y: auto; 
     font-family: 'Press Start 2P', cursive;
     font-size: 25px;
     text-align: center;
     min-height: 80vh;
 }
-
 ul {
-    list-style-type: none; /* Remove default list styles */
-    padding: 0; /* Remove default padding */
+    list-style-type: none; 
+    padding: 0; 
 }
 
 .pokemon-name {
-    display: inline-block; /* Display each Pokemon name container inline */
+    display: inline-block; 
     padding: 8px;
     margin: 4px;
     border: 1px solid #ccc;

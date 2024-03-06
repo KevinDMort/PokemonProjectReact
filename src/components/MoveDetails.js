@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import { setSelectedMoveDetails  } from './TeamBuildingSlice';
 
 function MoveDetails() {
   const selectedMove = useSelector(state => state.teamBuild.selectedMove);
@@ -12,10 +11,8 @@ function MoveDetails() {
     const fetchMoveDetails = async () => {
       try {
         if (selectedMove) {
-          // Fetch move details only if selectedMove is not null
           const response = await axios.get(selectedMove.move.url);
-          // Update the move details in the store
-          dispatch(setSelectedMoveDetails(response.data));
+          dispatch({ type: 'teamBuild/setDetailedMove', payload: response.data });
         }
       } catch (error) {
         console.error('Error fetching move details:', error);

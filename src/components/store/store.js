@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import teamBuildReducer from '../components/TeamBuildingSlice'; // Import your slice
+import teamBuildReducer from './slices/TeamBuildingSlice'; // Import your slice
 
 const store = configureStore({
   reducer: {
@@ -9,3 +9,4 @@ const store = configureStore({
 });
 
 export default store;
+

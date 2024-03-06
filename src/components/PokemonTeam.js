@@ -1,13 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectedPokemon } from './TeamBuildingSlice'; // Import action
 
 function PokemonTeam() {
   const team = useSelector(state => state.teamBuild.team);
   const dispatch = useDispatch();
 
   const handlePokemonSelect = (pokemon) => {
-    dispatch(selectedPokemon(pokemon));
+    dispatch({ type: 'teamBuild/selectedPokemon', payload: pokemon });
   };
 
   const renderTeamSlots = () => {

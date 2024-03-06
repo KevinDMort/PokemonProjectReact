@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPokemonList, setSearchTerm, setFilteredPokemonList, selectedPokemon } from './TeamBuildingSlice';
 
 function PokemonSearch() {
     const dispatch = useDispatch();
@@ -13,7 +12,7 @@ function PokemonSearch() {
         try {
             const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=151');
             const pokemonNames = response.data.results.map(pokemon => pokemon.name);
-            dispatch(setPokemonList(pokemonNames));
+            dispatch({ type: 'teamBuild/setPokemonList', payload: pokemonNames })
         } catch (error) {
             console.error('Error fetching Pokemon data:', error);
         }
@@ -26,7 +25,7 @@ function PokemonSearch() {
     const handlePokemonClick = async (pokemonName) => {
         try {
             const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
-            dispatch(selectedPokemon(response.data));
+            dispatch({ type: 'teamBuild/setSelectedPokemon', payload: response.data })
         } catch (error) {
             console.error('Error fetching Pokemon details:', error);
         }
@@ -34,13 +33,13 @@ function PokemonSearch() {
 
     const handleSearchChange = (event) => {
         const { value } = event.target;
-        dispatch(setSearchTerm(value));
+        dispatch({ type: 'teamBuild/setSearchTerm', payload: value })
 
         // Filter the list of Pokémon based on the search term
         const filtered = pokemonList.filter(pokemon =>
             pokemon.toLowerCase().includes(value.toLowerCase())
         );
-        dispatch(setFilteredPokemonList(filtered));
+        dispatch({type: 'teamBuild/setFilteredPokemonList', payload: filtered});
     };
 
     return (

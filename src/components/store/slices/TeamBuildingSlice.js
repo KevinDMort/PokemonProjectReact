@@ -16,15 +16,6 @@ const initialState = {
     initialState,
     
     reducers: {
-      selectedPokemon: (state, action) => {
-        state.selectedPokemon = action.payload;
-      },
-      detailedPokemon: (state, action) => {
-        state.detailedPokemon = action.payload;
-      },
-      selectedMove: (state, action) => {
-        state.selectedMove = action.payload;
-      },
       addPokemonToTeam: (state, action) => {
         const newPokemon = action.payload;
         const emptySlotIndex = state.team.findIndex(pokemon => pokemon === null);
@@ -52,7 +43,7 @@ const initialState = {
       setSelectedMove: (state, action) => {  
         state.selectedMove = action.payload;
       },
-      setSelectedMoveDetails: (state, action) => {
+      setDetailedMove: (state, action) => {
         state.detailedMove = action.payload; 
       },
       setDetailedPokemon: (state, action) => {
@@ -60,11 +51,6 @@ const initialState = {
       }
     }
   });
-export const { selectedPokemon } = TeamBuildSlice.actions;
-export const { selectedMove } = TeamBuildSlice.actions;
-export const { detailedPokemon } = TeamBuildSlice.actions;
-export const { addPokemonToTeam } = TeamBuildSlice.actions;
-export const { removePokemonFromTeam } = TeamBuildSlice.actions;
-export const { setPokemonList, setSearchTerm, setFilteredPokemonList, setSelectedPokemon, setSelectedMove,setSelectedMoveDetails, setDetailedPokemon} = TeamBuildSlice.actions;
+export const { addPokemonToTeam, removePokemonFromTeam, setPokemonList, setSearchTerm, setFilteredPokemonList, setSelectedPokemon, setSelectedMove,setDetailedMove, setDetailedPokemon} = TeamBuildSlice.actions;
 export default TeamBuildSlice.reducer;
 
