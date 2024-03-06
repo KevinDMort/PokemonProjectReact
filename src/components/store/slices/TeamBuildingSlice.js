@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchPokemonList, fetchSelectedPokemon } from '../thunks/thunks';
+
 
 const initialState = {
     selectedPokemon: null,
@@ -16,6 +18,7 @@ const initialState = {
     initialState,
     
     reducers: {
+      
       removeMoveFromDetailedPokemon: (state, action) => {
         const { moveIndex } = action.payload;
         state.detailedPokemon.moves.splice(moveIndex, 1);
@@ -79,7 +82,16 @@ const initialState = {
           moves: [],
       };
       }
-    }
+    },
+    extraReducers: (builder) => {
+      builder
+        .addCase(fetchPokemonList.fulfilled, (state, action) => {
+          state.pokemonList = action.payload;
+        })
+        .addCase(fetchSelectedPokemon.fulfilled, (state, action) => {
+          state.selectedPokemon = action.payload;
+        });
+    },
   });
 export const {addMoveToDetailedPokemon, removeMoveFromDetailedPokemon, addPokemonToTeam, removePokemonFromTeam, setPokemonList, setSearchTerm, setFilteredPokemonList, setSelectedPokemon, setSelectedMove,setDetailedMove, setDetailedPokemon} = TeamBuildSlice.actions;
 export default TeamBuildSlice.reducer;

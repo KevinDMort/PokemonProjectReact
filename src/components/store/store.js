@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import teamBuildReducer from './slices/TeamBuildingSlice'; // Import your slice
+import teamBuildReducer from './slices/TeamBuildingSlice'; 
+import { fetchPokemonList, fetchSelectedPokemon } from './thunks/thunks';
 
 const store = configureStore({
   reducer: {
@@ -8,5 +9,6 @@ const store = configureStore({
   },
 });
 
+export { fetchPokemonList, fetchSelectedPokemon };
 export default store;
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchPokemonList, fetchSelectedPokemon } from './store/thunks/thunks';
 
 function PokemonSearch() {
     const dispatch = useDispatch();
@@ -8,36 +8,17 @@ function PokemonSearch() {
     const searchTerm = useSelector(state => state.teamBuild.searchTerm);
     const filteredPokemonList = useSelector(state => state.teamBuild.filteredPokemonList);
 
-    const fetchPokemonList = async () => {
-        try {
-            const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=151');
-            const pokemonNames = response.data.results.map(pokemon => pokemon.name);
-            dispatch({ type: 'teamBuild/setPokemonList', payload: pokemonNames })
-        } catch (error) {
-            console.error('Error fetching Pokemon data:', error);
-        }
-    };
-    
-    useEffect(() => {
-        fetchPokemonList();
-    }, []);
+    useEffect(() => {dispatch(fetchPokemonList()); }, []); 
 
     const handlePokemonClick = async (pokemonName) => {
-        try {
-            const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
-            dispatch({ type: 'teamBuild/setSelectedPokemon', payload: response.data })
-        } catch (error) {
-            console.error('Error fetching Pokemon details:', error);
-        }
+        dispatch(fetchSelectedPokemon(pokemonName));
     };
-
     const handleSearchChange = (event) => {
         const { value } = event.target;
         dispatch({ type: 'teamBuild/setSearchTerm', payload: value })
-
-        // Filter the list of Pokémon based on the search term
         const filtered = pokemonList.filter(pokemon =>
             pokemon.toLowerCase().includes(value.toLowerCase())
+            
         );
         dispatch({type: 'teamBuild/setFilteredPokemonList', payload: filtered});
     };

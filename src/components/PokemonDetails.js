@@ -1,25 +1,12 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 
 function PokemonDetails() {
     const selectedPokemon = useSelector(state => state.teamBuild.selectedPokemon);
     const detailedPokemon = useSelector(state => state.teamBuild.detailedPokemon);
     const dispatch = useDispatch();
-    useEffect(() => {
-        const fetchPokemonDetails = async () => {
-            try {
-                if (selectedPokemon) {
-                    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${selectedPokemon.name}`);
-                    dispatch({ type: 'teamBuild/setDetailedPokemon', payload: response.data })
-                }
-            } catch (error) {
-                console.error('Error fetching Pokemon details:', error);
-            }
-        };
-
-        fetchPokemonDetails();
-    }, [selectedPokemon, dispatch]);
+    
+    useEffect(() => {dispatch({ type: 'teamBuild/setDetailedPokemon', payload: selectedPokemon }); }, [selectedPokemon]);
 
     const handleAddToTeamClick = () => {
         dispatch({type: 'teamBuild/addPokemonToTeam', payload: detailedPokemon});
