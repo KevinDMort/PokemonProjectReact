@@ -29,18 +29,14 @@ const initialState = {
         const newPokemon = action.payload;
         const emptySlotIndex = state.team.findIndex(pokemon => pokemon === null);
         if (emptySlotIndex !== -1) {
-            // If an empty slot is found, fill it with the new Pokemon
             state.team[emptySlotIndex] = newPokemon;
         } else {
-            console.log('Team is already at max size'); // Log a message indicating team is full
-            // You might want to handle this case differently, e.g., show a notification
+            console.log('Team is already at max size'); 
         }
-     },
-    
+      },
       removePokemonFromTeam: (state, action) => {
             state.team = state.team.filter(pokemon => pokemon !== action.payload);
-        },
-
+      },
       setPokemonList: (state, action) => {
           state.pokemonList = action.payload;
       },

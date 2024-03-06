@@ -30,7 +30,7 @@ function PokemonDetails() {
     const handleMoveChange = (event) => {
         const selectedMoveName = event.target.value;
         const sMove = detailedPokemon.moves.find(move => move.move.name === selectedMoveName);
-        dispatch(setSelectedMove(sMove)); // Dispatch action to update selected move
+        dispatch(setSelectedMove(sMove));
     };
 
     if (!detailedPokemon) {

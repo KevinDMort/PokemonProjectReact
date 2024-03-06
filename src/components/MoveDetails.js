@@ -21,10 +21,8 @@ function MoveDetails() {
         console.error('Error fetching move details:', error);
       }
     };
-
-    // Fetch move details when component mounts or when selectedMove changes
     fetchMoveDetails();
-  }, [selectedMove, dispatch]); // Dependency array includes dispatch
+  }, [selectedMove, dispatch]);
 
   if (!detailedMove) {
     return <div>Loading move details...</div>;
