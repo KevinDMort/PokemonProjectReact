@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PokemonSearch from './PokemonSearch';
 import PokemonDetails from './PokemonDetails';
 import MoveDetails from './MoveDetails';
 import PokemonTeam from './PokemonTeam';
 
-function AppContainer() {
+function Build() {
     return (
         <div className="app-container-wrapper">
             <div className="app-container">
@@ -29,4 +29,4 @@ function AppContainer() {
     );
 }
 
-export default AppContainer;
+export default Build;
