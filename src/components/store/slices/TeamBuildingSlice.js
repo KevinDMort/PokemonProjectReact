@@ -7,6 +7,7 @@ const initialState = {
     detailedPokemon: { pokemon: null, moves: Array(4).fill(null) },
     selectedMove: null,
     team: Array(6).fill({ pokemon: null, moves: Array(4).fill(null) }),
+    teams: [],
     pokemonList: [],
     searchTerm: '',
     filteredPokemonList: [],
@@ -18,6 +19,21 @@ const initialState = {
     initialState,
     
     reducers: {
+      deletePokemonFromTeam: (state, action) => {
+        console.log("deletePokemonFromTeam reducer called with payload:", action.payload);
+        const index = action.payload;
+          state.team = state.team.map((teamMember, i) => {
+            if (i === index) {
+              return { pokemon: null, moves: Array(4).fill(null) };
+            }
+            return teamMember;
+          });
+      },
+      addTeam: (state, action) => {
+      const { teamName, creatorName } = action.payload; 
+      const team = state.team; 
+      state.teams.push({ team, teamName, creatorName }); 
+      },
       
       removeMoveFromDetailedPokemon: (state, action) => {
         const { moveIndex } = action.payload;
@@ -93,6 +109,6 @@ const initialState = {
         });
     },
   });
-export const {addMoveToDetailedPokemon, removeMoveFromDetailedPokemon, addPokemonToTeam, removePokemonFromTeam, setPokemonList, setSearchTerm, setFilteredPokemonList, setSelectedPokemon, setSelectedMove,setDetailedMove, setDetailedPokemon} = TeamBuildSlice.actions;
+export const { deletePokemonFromTeam, addTeam, addMoveToDetailedPokemon, removeMoveFromDetailedPokemon, addPokemonToTeam, removePokemonFromTeam, setPokemonList, setSearchTerm, setFilteredPokemonList, setSelectedPokemon, setSelectedMove,setDetailedMove, setDetailedPokemon} = TeamBuildSlice.actions;
 export default TeamBuildSlice.reducer;
 
