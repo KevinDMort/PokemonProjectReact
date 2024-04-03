@@ -34,7 +34,7 @@ function PokemonDetails() {
                 ))}
             </ul>
             <h3>Select a Move:</h3>
-            <select onChange={handleMoveChange} >
+            <select onChange={handleMoveChange} >    
                 <option value="">Select a move</option>
                 {detailedPokemon.pokemon.moves.map((move, index) => (
                     <option key={index} value={move.move.name}>{move.move.name}</option>
