@@ -4,8 +4,7 @@ import { fetchPokemonList, fetchSelectedPokemon } from './thunks/thunks';
 
 const store = configureStore({
   reducer: {
-    teamBuild: teamBuildReducer, // Add your slice reducer to the store
-    // Add other reducers if you have them
+    teamBuild: teamBuildReducer,
   },
 });
 
